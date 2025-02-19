@@ -1,0 +1,54 @@
+﻿@model Etkinlik_CodeFirstAndMVC.Models.Etkinlik
+@{
+    ViewBag.Title = "Etkinlik Oluştur";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+
+<div class="mainContainer">
+    <div class="header">
+        <h2>Etkinlik Olustur</h2>
+        <hr style="margin-bottom:10px;" />
+    </div>
+
+    <div class="contentOlustur">
+
+        @using (Html.BeginForm("EtkinlikOlustur", "Etkinlik", FormMethod.Post, new {enctype = "multipart/form-data"}))
+        {
+            <div class="line">
+                <label>Etkinlik</label><br />
+                @Html.EditorFor(x => x.Isim, new { HtmlAttributes = new { @class = "box" } })<br />
+                @Html.ValidationMessageFor(x => x.Isim, null, htmlAttributes: new { @class = "errorMessage" })
+            </div>
+
+            <div class="line">
+                <label>Tarih</label><br />
+                @Html.EditorFor(x => x.Tarih, new { HtmlAttributes = new { @class = "box" } })
+            </div>
+
+            <div class="line">
+                <label>Resim</label><br />
+                <input type="file" class="box" name="imageFile" />
+            </div>
+
+            <div class="line">
+                <label>Durum</label>
+                @Html.EditorFor(x => x.Durum)
+            </div>
+
+            <div class="line" style="text-align:center">
+                <input type="submit" value="Etkinlik Ekle" class="createButton" />
+            </div>
+        }
+
+
+
+
+
+
+
+    </div>
+
+
+
+</div>

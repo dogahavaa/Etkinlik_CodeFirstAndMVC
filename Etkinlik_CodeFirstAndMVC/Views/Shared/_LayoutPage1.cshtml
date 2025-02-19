@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Assets/css/MainStyle.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="menu">
+        <a href="@Url.Action("Index","Etkinlik")">Etkinlikler</a>
+        <a href="@Url.Action("EtkinlikOlustur","Etkinlik")">Etkinlik Oluştur</a>
+    </div>
+
+    <div class="mainContent">
+        @RenderBody()
+    </div>
+
+</body>
+</html>

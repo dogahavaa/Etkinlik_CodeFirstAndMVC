@@ -1,0 +1,58 @@
+﻿*, h1,h2,h3,h4,h5,h6{
+    padding:0;
+    margin:0;
+}
+body {
+    font-family: Poppins;
+    background-color: #FBFBFB;
+}
+.mainContent {
+    
+    width: 1000px;
+}
+.menu {
+    width: 200px;
+    min-height: 1000px;
+    background-color: lavenderblush;
+    float: left;
+}
+.menu a{
+    text-decoration:none;
+    padding:7px;
+    border-bottom:1px solid silver;
+    color:darkslategrey;
+    display:block;
+}
+.menu a:hover{
+    text-decoration:underline;
+}
+.mainContent{
+    float:left;
+    padding:20px;
+}
+.mainContainer {
+    border: 1px solid silver;
+    border-radius: 3px;
+    padding: 10px;
+}
+.line{
+    padding:7px;
+}
+.box{
+    width:90%;
+    border:1px solid silver;
+    border-radius:3px;
+    padding:7px;
+}
+.createButton {
+    padding: 10px 35px;
+    background-color: darkslategray;
+    color: lavenderblush;
+    border: none;
+    font-weight: 600;
+    font-size: 12pt;
+    border-radius: 3px;
+}
+.errorMessage{
+    color:darkred;
+}
