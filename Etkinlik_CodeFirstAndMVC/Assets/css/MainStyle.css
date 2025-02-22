@@ -56,3 +56,39 @@ body {
 .errorMessage{
     color:darkred;
 }
+.tablo {
+    
+}
+    .tablo tr th {
+        border: 1px solid silver;
+        padding:7px;
+    }
+    .tablo tr td {
+        padding: 7px;
+        border: 1px solid silver;
+    }
+.tabloButon{
+    padding:7px;
+    border: 1px solid silver;
+    border-radius:3px;
+    text-decoration:none;
+    color:black;
+    display:inline-block;
+    cursor:pointer;
+}
+.duzenle{
+    background-color:greenyellow;
+}
+.sil{
+    background-color:darkred;
+    color:whitesmoke
+}
+.resimSol{
+    width:100px;
+    float:left;
+    padding:10px;
+}
+.resimSag {
+    float: left;
+    padding: 10px;
+}

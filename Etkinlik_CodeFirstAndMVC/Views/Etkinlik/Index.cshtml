@@ -1,8 +1,58 @@
-﻿
+﻿@using Etkinlik_CodeFirstAndMVC.Models
+@model ICollection<Etkinlik>
+
 @{
     ViewBag.Title = "Etkinlikler";
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
 
-<h2>Index</h2>
+<div class="mainContainer">
+    @if (TempData["HataMesaji"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["HataMesaji"]
+        </div>
+    }
+    <div class="tabloBaslik">
+        <h2>Etkinlikler</h2>
+        <hr style="margin-bottom:20px;" />
+    </div>
+    <div class="tabloIcerik">
+
+        <table cellpadding="0" cellspacing="0" class="tablo">
+            <tr>
+                <th>Resim</th>
+                <th>ID</th>
+                <th>Etkinlik</th>
+                <th>Tarih</th>
+                <th>Durum</th>
+                <th>Seçenekler</th>
+            </tr>
+            @foreach (Etkinlik item in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="~/Assets/EtkinlikImages/@item.Resim" width="100" height="75" />
+                    </td>
+                    <td>
+                        @item.ID
+                    </td>
+                    <td>@item.Isim</td>
+                    <td>@item.Tarih.ToShortDateString()</td>
+                    <td>@item.Durum</td>
+                    <td>
+                        <a href="@Url.Action("Duzenle", "Etkinlik", new {id = item.ID})" class="tabloButon duzenle">Düzenle</a>
+
+                       <a href="@Url.Action("Sil", "Etkinlik", new { id = item.ID })" class="tabloButon sil">Sil</a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+
+    </div>
+</div>
+
+
 

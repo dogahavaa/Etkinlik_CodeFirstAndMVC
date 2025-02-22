@@ -14,7 +14,7 @@ namespace Etkinlik_CodeFirstAndMVC.Controllers
         // GET: Etkinlik
         public ActionResult Index()
         {
-            return View();
+            return View(db.Etkinlikler.ToList());
         }
 
         [HttpGet]
@@ -27,24 +27,94 @@ namespace Etkinlik_CodeFirstAndMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (imageFile != null)
+                if (model != null)
                 {
-                    FileInfo fi = new FileInfo(imageFile.FileName);
-                    if (fi.Extension == ".jpg" || fi.Extension == ".png")
+                    if (imageFile != null)
                     {
-                        string isim = Guid.NewGuid().ToString() + fi.Extension;
-                        imageFile.SaveAs(Server.MapPath("~/Assets/EtkinlikImages/" + isim));
-                        model.Resim = isim;
+                        FileInfo fi = new FileInfo(imageFile.FileName);
+                        if (fi.Extension == ".jpg" || fi.Extension == ".png")
+                        {
+                            string isim = Guid.NewGuid().ToString() + fi.Extension;
+                            imageFile.SaveAs(Server.MapPath("~/Assets/EtkinlikImages/" + isim));
+                            model.Resim = isim;
+                        }
+                    }
+                    else
+                    {
+                        model.Resim = "noImage.jpg";
+                    }
+                    try
+                    {
+                        db.Etkinlikler.Add(model);
+                        db.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        TempData["HataMesaji"] = "Kayıt silinirken bir hata oluştu: " + ex.Message;
                     }
                 }
                 else
                 {
-                    model.Resim = "noImage";
+                    TempData["HataMesaji"] = "Silinecek kayıt bulunamadı.";
                 }
-                db.Etkinlikler.Add(model);
-                db.SaveChanges();
+                
+                
             }
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Duzenle(int? id)
+        {
+            if (id != null)
+            {
+                Etkinlik model = db.Etkinlikler.Find(id);
+                if (model != null)
+                {
+                    return View(model);
+                }
+            }
+            return RedirectToAction("Index", "Etkinlik");
+        }
+
+        [HttpPost]
+        public ActionResult Duzenle(Etkinlik model, HttpPostedFileBase imageFile)
+        {
+            if (ModelState.IsValid)
+            {
+                if (model != null)
+                {
+                    if (imageFile != null)
+                    {
+                        FileInfo fi = new FileInfo(imageFile.FileName);
+                        if (fi.Extension == ".jpg" || fi.Extension == ".png")
+                        {
+                            string isim = Guid.NewGuid().ToString() + fi.Extension;
+                            imageFile.SaveAs(Server.MapPath("~/Assets/EtkinlikImages/" + isim));
+                            model.Resim = isim;
+                        }
+                    }
+                    db.Entry(model).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+            return RedirectToAction("Index", "Etkinlik");
+        }
+
+       
+     
+        public ActionResult Sil(int? id)
+        {
+            if (id != null)
+            {
+                Etkinlik model = db.Etkinlikler.Find(id);
+                if (model != null)
+                {
+                    db.Etkinlikler.Remove(model);
+                    db.SaveChanges();
+                }
+            }
+            return RedirectToAction("Index", "Etkinlik");
         }
     }
 }

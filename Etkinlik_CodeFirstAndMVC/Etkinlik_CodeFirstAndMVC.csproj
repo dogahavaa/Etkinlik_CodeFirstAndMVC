@@ -120,6 +120,7 @@
     <Content Include="Views\Shared\_LayoutPage1.cshtml" />
     <Content Include="Views\Etkinlik\Index.cshtml" />
     <Content Include="Views\Etkinlik\EtkinlikOlustur.cshtml" />
+    <Content Include="Views\Etkinlik\Duzenle.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
